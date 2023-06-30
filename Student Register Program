@@ -1,0 +1,71 @@
+class StudentRegister :
+    def __init__(self) :
+        self.register = {}
+    def accept(self) :
+        name = input("Enter student name  : ")
+        roll_no = input("Enter roll number : ")
+        class_name = input("Enter class : ")
+        division = input("Enter division : ")
+        self.register[roll_no] = {'Name': name, 'Class': class_name, 'Division': division}
+        print("Student record successfully added")
+    def update(self) :
+        roll_no = input("Enter roll number to update the record : ")
+        if roll_no in self.register:
+            print(f"Current details: {self.register[roll_no]}")
+            name = input("Enter new name : ")
+            self.register[roll_no]['Name'] = name
+            class_name = input("Enter new class : ")
+            self.register[roll_no]['Class'] = class_name
+            division = input("Enter new division : ")
+            self.register[roll_no]['Division'] = division
+            print("Record updated successfully.")
+        else:
+            print("Roll number not found.")
+    def display(self) :
+        if self.register :
+            print("Student records:")
+            for roll_no, details in self.register.items() :
+                print(f"Roll No : {roll_no}")
+                for key, value in details.items() :
+                    print(f"{key} : {value}")
+                print("-------------------")
+        else:
+            print("No student records found.")
+    def delete(self) :
+        roll_no = input("Enter roll number to delete the record : ")
+        if roll_no in self.register :
+            del self.register[roll_no]
+            print("Record deleted successfully.")
+        else:
+            print("Roll number not found.")
+    def search(self) : 
+        roll_no = input("Enter roll number to be searched : ")
+        if roll_no in self.register :
+            print(self.register[roll_no]) 
+        else :
+            print("Roll number not found")        
+
+register = StudentRegister()
+while True:
+    print("\n--- Student Register ---")
+    print("1. Add Student")
+    print("2. Update Student")
+    print("3. Display Students")
+    print("4. Delete Student")
+    print("5. Search Student")
+    print("6. Quit")
+    choice = input("Enter your choice : ")
+    if choice == '1':
+        register.accept()
+    elif choice == '2':
+        register.update()
+    elif choice == '3':
+        register.display()
+    elif choice == '4':
+        register.delete()
+    elif choice == '5' :
+        register.search()
+    elif choice == '6':
+        break
+    else :
+        print("Invalid choice")
